@@ -42,10 +42,11 @@ const server = http.createServer((req, res) => {
       "utf-8",
       (err, data) => {
         const productData = JSON.parse(data);
-        console.log(productData);
+        // console.log(productData);
+        res.writeHead(200, { "Content-type": "application/json" });
+        res.end(data);
       }
     );
-    res.end("API");
   } else {
     // write a header and tell browser what content type to expect
     res.writeHead(404, { "Content-type": "text/html" });
