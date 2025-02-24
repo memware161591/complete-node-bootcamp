@@ -37,7 +37,10 @@ const server = http.createServer((req, res) => {
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
   } else {
-    res.end("Page not found!");
+    // write a header and tell browser what content type to expect
+    res.writeHead(404, { "Content-type": "text/html" });
+    // send browser the message in the expected content type -- in this case html.
+    res.end("<h1> Page Not Found! </h1>");
   }
 });
 
