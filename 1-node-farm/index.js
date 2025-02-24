@@ -30,7 +30,7 @@ const url = require("url");
 
 ////////////////////////////
 // SERVER
-// the webserver will only read the data once, and then serve it many times without the need to re-read the file.
+// only have to read the data once
 const data = fs.readFile(`${__dirname}/starter/dev-data/data.json`, "utf-8");
 
 const server = http.createServer((req, res) => {
@@ -40,7 +40,8 @@ const server = http.createServer((req, res) => {
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
   } else if (pathName === "/api") {
-    // show the api data without having to re-read it.
+    // serve the data without re-reading the file
+    res.writeHead(200, { "Content-type": "application/json" });
     res.end(data);
   } else {
     // write a header and tell browser what content type to expect
