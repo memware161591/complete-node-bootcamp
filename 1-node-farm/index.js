@@ -31,7 +31,11 @@ const url = require("url");
 ////////////////////////////
 // SERVER
 // only have to read the data once
-const data = fs.readFile(`${__dirname}/starter/dev-data/data.json`, "utf-8");
+const data = fs.readFileSync(
+  `${__dirname}/starter/dev-data/data.json`,
+  "utf-8"
+);
+const dataObj = JSON.parse(data);
 
 const server = http.createServer((req, res) => {
   const pathName = req.url;
@@ -43,6 +47,7 @@ const server = http.createServer((req, res) => {
     // serve the data without re-reading the file
     res.writeHead(200, { "Content-type": "application/json" });
     res.end(data);
+    console.log('serving API data');
   } else {
     // write a header and tell browser what content type to expect
     res.writeHead(404, { "Content-type": "text/html" });
