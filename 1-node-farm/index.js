@@ -36,6 +36,16 @@ const server = http.createServer((req, res) => {
     res.end("This is the OVERVIEW");
   } else if (pathName === "/product") {
     res.end("This is the PRODUCT");
+  } else if (pathName === "/api") {
+    fs.readFile(
+      `${__dirname}/starter/dev-data/data.json`,
+      "utf-8",
+      (err, data) => {
+        const productData = JSON.parse(data);
+        console.log(productData);
+      }
+    );
+    res.end("API");
   } else {
     // write a header and tell browser what content type to expect
     res.writeHead(404, { "Content-type": "text/html" });
