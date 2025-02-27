@@ -79,21 +79,6 @@ const deleteTour = (req, res) => {
   });
 };
 
-// // All tours
-// app.get('/api/v1/tours', getAllTours);
-
-// // A Single tour
-// app.get('/api/v1/tours/:id', getTour);
-
-// app.post('/api/v1/tours', newTour);
-
-// // Update a tour
-// //
-// app.patch('/api/v1/tours/:id', updateTour);
-
-// //Delete
-// app.delete('/api/v1/tours/:id', deleteTour);
-
 //Refactored routes
 app.route('/api/v1/tours').get(getAllTours).post(newTour);
 app
