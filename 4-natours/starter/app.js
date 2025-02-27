@@ -94,10 +94,13 @@ const deleteTour = (req, res) => {
 // //Delete
 // app.delete('/api/v1/tours/:id', deleteTour);
 
-
 //Refactored routes
-app.route('/api/v1/tours').get(getAllTours).patch(updateTour);
-app.route('/api/v1/tours/:id').get(getTour).post(newTour).delete(deleteTour);
+app.route('/api/v1/tours').get(getAllTours).post(newTour);
+app
+  .route('/api/v1/tours/:id')
+  .get(getTour)
+  .patch(updateTour)
+  .delete(deleteTour);
 
 // start up a server
 const port = 3000;
