@@ -1,16 +1,8 @@
-const express = require('express');
+import { Router } from 'express';
 
-const {
-  getAllTours,
-  newTour,
-  getTour,
-  updateTour,
-  deleteTour,
-  checkId,
-  checkBody
-} = require('../controllers/tourController');
+import { getAllTours, newTour, getTour, updateTour, deleteTour, checkId, checkBody } from '../controllers/tourController';
 
-const router = express.Router();
+const router = Router();
 
 router.route('/api/v1/tours', router);
 
@@ -27,4 +19,4 @@ router
   .patch(updateTour)
   .delete(deleteTour);
 
-module.exports = router;
+export default router;

@@ -1,14 +1,8 @@
-const express = require('express');
+import { Router } from 'express';
 
-const {
-  getAllUsers,
-  createUser,
-  getUser,
-  updateUser,
-  deleteUser,
-} = require('../controllers/userContoller');
+import { getAllUsers, createUser, getUser, updateUser, deleteUser } from '../controllers/userContoller';
 
-const router = express.Router();
+const router = Router();
 
 router.route('/api/v1/users', router);
 
@@ -19,4 +13,4 @@ router
   .patch(updateUser)
   .delete(deleteUser);
 
-module.exports = router;
+export default router;

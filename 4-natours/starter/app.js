@@ -1,15 +1,18 @@
-const fs = require('fs');
-const express = require('express');
-const tourRouter = require('./routers/toursRoute');
-const userRouter = require('./routers/usersRoute');
-const morgan = require('morgan');
+import fs from 'fs';
+import express, { json} from 'express';
+import tourRouter from './routers/toursRoute';
+import userRouter from './routers/usersRoute';
+import morgan from 'morgan';
 const port = 3000;
 const app = express();
 
 //middleware
-app.use(morgan('dev'));
-app.use(express.json());
-app.use(express.static(`${__dirname}/public`));
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+app.use(json());
+app.use(app.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
   console.log('Hello from the middleware 😁');
@@ -26,4 +29,4 @@ app.use((req, reqs, next) => {
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-module.exports = app;
+export default app;
